@@ -1,22 +1,17 @@
 const { Router } = require('express');
+const AtendimentoController = require('../controller/atendimentoController');
 const router = Router();
 
 //get post put delete
 
-router.get('/atendimentos', (req, res) => {
-    res.send('Chegou aqui, estamos listando todos os atendimentos...');
-});
+router.get('/atendimentos', AtendimentoController.listConversations);
 
-router.post('/atendimentos', (req, res) => {
-    res.send('Chegou aqui, estamos criando um novo atendimento...');
-});
+router.post('/mensagens', AtendimentoController.sendMessage);
 
-router.put('/atendimentos/:id', (req, res) => {
-    const { id } = req.params;
-    res.send(`Chegou aqui, estamos atualizando o atendimento ${id}...`);
-});
+router.get('/atendimentos/:idConversa/mensagens', AtendimentoController.listMessages);
 
-router.delete('/atendimento/:id', (req, res) => {
+
+router.delete('/atendimentos/:id', (req, res) => {
     const { id } = req.params;
     res.send('Chegou aqui, estamos deletando o atendimento ' + id + '...');
 });
